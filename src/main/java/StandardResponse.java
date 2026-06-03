@@ -1,5 +1,3 @@
-package com;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 /*
