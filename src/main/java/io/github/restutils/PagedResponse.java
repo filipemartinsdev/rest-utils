@@ -2,6 +2,9 @@ package io.github.restutils;
 
 import java.util.List;
 
+/*
+ * Template for Paged response.
+ * **/
 public class PagedResponse<T> {
     public final Long page;
     public final Long size;
