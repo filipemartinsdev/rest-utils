@@ -5,11 +5,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 * **/
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class StandardResponse<T> {
-    public String status;
-    public String message;
-    public T data;
+    public final String status;
+    public final String message;
+    public final T data;
 
-    private StandardResponse() {}
+    private StandardResponse() {
+        this(null, null, null);
+    }
 
     private StandardResponse(String status, String message, T data) {
         this.status = status;
@@ -17,52 +19,49 @@ public class StandardResponse<T> {
         this.data = data;
     }
 
-    public static <T> Builder<T> builder() {
-        return new Builder<T>();
+    public static <T> Builder<T> success(){
+        return new Builder<T>().status(Status.SUCCESS);
     }
 
     public static <T> StandardResponse<T> success(T data){
-        return new StandardResponse<T>(Status.SUCCESS.label, null, data);
+        return new StandardResponse<T>(Status.SUCCESS.value, null, data);
     }
 
-    public static <T> StandardResponse<T> fail(String message, T data){
-        return new StandardResponse<T>(Status.FAIL.label, message, data);
+    public static <T> Builder<T> fail(){
+        return new Builder<T>().status(Status.FAIL);
     }
 
-    public static <T> StandardResponse<T> error(){
-        return new StandardResponse<T>(Status.ERROR.label, null, null);
+    public static <T> StandardResponse<T> fail(T data){
+        return new StandardResponse<T>(Status.FAIL.value, null, data);
     }
 
-    public static <T> StandardResponse<T> error(String message){
-        return new StandardResponse<T>(Status.ERROR.label, message, null);
+    public static <T> Builder<T> error(){
+        return new Builder<T>().status(Status.ERROR);
     }
 
-    public static <T> StandardResponse<T> error(String message, T data){
-        return new StandardResponse<T>(Status.ERROR.label, message, data);
+    public static <T> StandardResponse<T> error(T data){
+        return new StandardResponse<T>(Status.ERROR.value, null, data);
     }
 
-    private static enum Status {
+
+    public static enum Status {
         SUCCESS("success"), FAIL("fail"), ERROR("error");
 
-        public final String label;
+        public final String value;
 
         Status(String label) {
-            this.label = label;
+            this.value = label;
         }
     }
 
     public static class Builder<T> {
-        private String status;
+        private Status status;
         private String message;
         private T data;
 
         private Builder() {}
 
-        public StandardResponse<T> build(){
-            return new StandardResponse<T>(this.status, this.message, this.data);
-        }
-
-        public Builder<T> status(String status){
+        public Builder<T> status(Status status){
             this.status = status;
             return this;
         }
@@ -75,6 +74,10 @@ public class StandardResponse<T> {
         public Builder<T> data(T data){
             this.data = data;
             return this;
+        }
+
+        public StandardResponse<T> build(){
+            return new StandardResponse<T>(this.status.value, this.message, this.data);
         }
     }
 }
