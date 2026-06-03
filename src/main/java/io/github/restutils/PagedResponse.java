@@ -1,3 +1,5 @@
+package io.github.restutils;
+
 import java.util.List;
 
 public class PagedResponse<T> {

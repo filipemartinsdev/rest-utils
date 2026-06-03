@@ -1,3 +1,5 @@
+package io.github.restutils;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 /*
