@@ -55,7 +55,7 @@ Includes on `pom.xml`:
     
     ````json
     {
-      "status": "success"
+        "status": "success"
     }
     ````
 <br>
@@ -77,11 +77,11 @@ Includes on `pom.xml`:
     
     ````json
     {
-      "status": "success",
-      "message": "Data retrieved!",
-      "data": {
-        "id": 1
-      }
+        "status": "success",
+        "message": "Data retrieved!",
+        "data": {
+            "id": 1
+        }
     }
     ````
 
