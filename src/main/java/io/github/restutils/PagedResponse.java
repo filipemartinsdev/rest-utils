@@ -5,6 +5,7 @@ import java.util.List;
 /*
  * Template for Paged response.
  * **/
+@Deprecated
 public class PagedResponse<T> {
     public final Long page;
     public final Long size;

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 * Template for API responses, following JSend pattern.
 * **/
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@Deprecated
 public class StandardResponse<T> {
     public final String status;
     public final String message;
