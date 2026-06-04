@@ -147,7 +147,6 @@ Includes on `pom.xml`:
     ````json
     {
         "status": "success",
-        "message": "Data retrieved!",
         "data": {
             "page": 0,
             "size": 20,
