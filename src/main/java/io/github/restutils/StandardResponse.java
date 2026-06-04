@@ -21,28 +21,28 @@ public class StandardResponse<T> {
         this.data = data;
     }
 
-    public static <T> Builder<T> success(){
-        return new Builder<T>().status(Status.SUCCESS);
+    public static Builder<Void> success(){
+        return new Builder<Void>().status(Status.SUCCESS);
     }
 
-    public static <T> StandardResponse<T> success(T data){
-        return new StandardResponse<T>(Status.SUCCESS.value, null, data);
+    public static <T> Builder<T> success(T data){
+        return new Builder<T>().status(Status.SUCCESS).data(data);
     }
 
-    public static <T> Builder<T> fail(){
-        return new Builder<T>().status(Status.FAIL);
+    public static Builder<Void> fail(){
+        return new Builder<Void>().status(Status.FAIL);
     }
 
-    public static <T> StandardResponse<T> fail(T data){
-        return new StandardResponse<T>(Status.FAIL.value, null, data);
+    public static <T> Builder<T> fail(T data){
+        return new Builder<T>().status(Status.FAIL).data(data);
     }
 
-    public static <T> Builder<T> error(){
-        return new Builder<T>().status(Status.ERROR);
+    public static Builder<Void> error(){
+        return new Builder<Void>().status(Status.ERROR);
     }
 
-    public static <T> StandardResponse<T> error(T data){
-        return new StandardResponse<T>(Status.ERROR.value, null, data);
+    public static <T> Builder<T> error(T data){
+        return new Builder<T>().status(Status.ERROR).data(data);
     }
 
 
