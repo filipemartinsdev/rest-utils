@@ -26,10 +26,9 @@ public class PagedResponse<T> {
         this.content = content;
     }
 
-    public static <T> Builder<T> builder(){
-        return new Builder<>();
+    public static <T> Builder<T> content(List<T> content) {
+        return new Builder<T>().content(content);
     }
-
 
     public static class Builder<T> {
         private Long page;
@@ -64,7 +63,7 @@ public class PagedResponse<T> {
             return this;
         }
 
-        public Builder<T> content(List<T> content) {
+        private Builder<T> content(List<T> content) {
             this.content = content;
             return this;
         }
