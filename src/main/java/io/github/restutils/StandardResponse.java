@@ -63,7 +63,7 @@ public class StandardResponse<T> {
 
         private Builder() {}
 
-        public Builder<T> status(Status status){
+        private Builder<T> status(Status status){
             this.status = status;
             return this;
         }
@@ -73,7 +73,7 @@ public class StandardResponse<T> {
             return this;
         }
 
-        public Builder<T> data(T data){
+        private Builder<T> data(T data){
             this.data = data;
             return this;
         }
