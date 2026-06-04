@@ -7,12 +7,14 @@
 
 <p>
 
-Utility tools for Java REST applications.
+Utility tools for Java REST applications. <br>
+⚠ Deprecated ⚠
 
 </p>
 
 </div>
 
+> The new version of this library is [here](https://github.com/filipemartinsdev/response-kit).
 
 ## About
 
@@ -32,7 +34,7 @@ Includes on `pom.xml`:
     <dependency>
         <groupId>io.github.filipemartinsdev</groupId>
         <artifactId>rest-utils</artifactId>
-        <version>1.0.2</version>
+        <version>2.0.1</version>
     </dependency>
 </dependencies>
 ````
