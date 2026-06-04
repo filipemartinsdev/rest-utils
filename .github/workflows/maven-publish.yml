@@ -9,11 +9,16 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
+
     permissions:
       contents: read
       packages: write
+
+    env:
+      MAVEN_USERNAME: ${{ secrets.CENTRAL_USERNAME }}
+      MAVEN_PASSWORD: ${{ secrets.CENTRAL_PASSWORD }}
+      GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
 
     steps:
     - uses: actions/checkout@v4
@@ -22,13 +27,16 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-        server-id: central # Value of the distributionManagement/repository/id field of the pom.xml
-        settings-path: ${{ github.workspace }} # location for the settings.xml file
 
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
+        server-id: central
+        server-username: MAVEN_USERNAME
+        server-password: MAVEN_PASSWORD
 
-    - name: Publish to GitHub Packages Apache Maven
-      run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
+        gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+        gpg-passphrase: GPG_PASSPHRASE
+
+    - name: Build
+      run: mvn -B verify
+
+    - name: Publish to Maven Central
+      run: mvn -B deploy
