@@ -2,6 +2,8 @@ package io.github.restutils;
 
 import org.junit.Test;
 
+import java.util.Map;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
@@ -42,6 +44,22 @@ public class StandardResponseTests {
         String expectedData = "dataTest";
 
         StandardResponse<String> response = StandardResponse
+                .success(expectedData)
+                .message(expectedMessage)
+                .build();
+
+        assertEquals(expectedStatus, response.status);
+        assertEquals(expectedMessage, response.message);
+        assertEquals(expectedData, response.data);
+    }
+
+    @Test
+    public void successTestCase4(){
+        String expectedStatus = "success";
+        String expectedMessage = "test";
+        Map<String, Object> expectedData = Map.of("id", 1, "name", "any");
+
+        StandardResponse<Map<String, Object>> response = StandardResponse
                 .success(expectedData)
                 .message(expectedMessage)
                 .build();
@@ -96,6 +114,22 @@ public class StandardResponseTests {
         assertEquals(expectedData, response.data);
     }
 
+    @Test
+    public void failTestCase4(){
+        String expectedStatus = "fail";
+        String expectedMessage = "test";
+        Map<String, Object> expectedData = Map.of("id", 1, "name", "any");
+
+        StandardResponse<Map<String, Object>> response = StandardResponse
+                .fail(expectedData)
+                .message(expectedMessage)
+                .build();
+
+        assertEquals(expectedStatus, response.status);
+        assertEquals(expectedMessage, response.message);
+        assertEquals(expectedData, response.data);
+    }
+
 
     @Test
     public void errorTestCase1(){
@@ -132,6 +166,22 @@ public class StandardResponseTests {
         String expectedData = "dataTest";
 
         StandardResponse<String> response = StandardResponse
+                .error(expectedData)
+                .message(expectedMessage)
+                .build();
+
+        assertEquals(expectedStatus, response.status);
+        assertEquals(expectedMessage, response.message);
+        assertEquals(expectedData, response.data);
+    }
+
+    @Test
+    public void errorTestCase4(){
+        String expectedStatus = "error";
+        String expectedMessage = "test";
+        Map<String, Object> expectedData = Map.of("id", 1, "name", "any");
+
+        StandardResponse<Map<String, Object>> response = StandardResponse
                 .error(expectedData)
                 .message(expectedMessage)
                 .build();
