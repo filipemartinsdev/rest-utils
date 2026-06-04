@@ -63,7 +63,7 @@ Includes on `pom.xml`:
 2. Success with message/data
 
     ````java
-    public StandardResponse<String> get() {
+    public StandardResponse<Map<String, Object>> get() {
         var data = Map.of("id", 1);
    
         return StandardResponse
