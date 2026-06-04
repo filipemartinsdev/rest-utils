@@ -44,7 +44,7 @@ Includes on `pom.xml`:
 1. Default success
 
     ````java
-    public StandardResponse<String> get() {
+    public StandardResponse<Void> get() {
         return StandardResponse
                 .success()
                 .build();
